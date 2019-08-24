@@ -1,5 +1,6 @@
 package com.ims.mp.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
@@ -12,9 +13,10 @@ import lombok.Data;
 @Data
 @TableName("user")
 public class User {
-    @TableId
+    @TableId(value = "id")
     private Long userId;
-    private String name;
+    @TableField("name")
+    private String realName;
     private Integer age;
     private String email;
     private Long managerId;
