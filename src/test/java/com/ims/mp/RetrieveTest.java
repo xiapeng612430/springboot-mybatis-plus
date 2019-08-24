@@ -68,7 +68,9 @@ public class RetrieveTest {
         //queryWrapper.in("age", Arrays.asList(30, 31, 34, 35));
 
         //只返回满足条件的一条语句
-        queryWrapper.in("age", Arrays.asList(30, 31, 34, 35)).last("limit 1");
+        //queryWrapper.in("age", Arrays.asList(30, 31, 34, 35)).last("limit 1");
+
+        queryWrapper.select("id", "name", "age").like("name", "雨").lt("age", 40);
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
