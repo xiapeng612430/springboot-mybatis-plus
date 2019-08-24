@@ -2,6 +2,8 @@ package com.ims.mp;
 
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +28,10 @@ public class RetrieveTest {
     }
 
 
+    @Test
+    public void selectIds() {
+        List<Long> idsList = Arrays.asList(1088248166370832385L, 1094592041087729666L, 1087982257332887553L);
+        List<User> list = userMapper.selectBatchIds(idsList);
+        list.forEach(System.err::println);
+    }
 }
