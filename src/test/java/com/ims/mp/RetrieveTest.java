@@ -50,7 +50,10 @@ public class RetrieveTest {
     @Test
     public void selectByWrapper() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
-        queryWrapper.like("name", "雨").lt("age", 40);
+        //queryWrapper.like("name", "雨").lt("age", 40);
+        //queryWrapper.like("name", "雨").between("age", 20, 40).isNotNull("email");
+        //queryWrapper.likeRight("name", "王").or().ge("age", 25).orderByDesc("age").orderByAsc("id");
+        //queryWrapper.apply("date_format(create_time,'%Y-%m-%d') = {0}", "2019-02-14").inSql("manager_id", "select id from user where name like '王%'");
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
