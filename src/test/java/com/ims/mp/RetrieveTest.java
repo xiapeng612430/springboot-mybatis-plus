@@ -60,6 +60,15 @@ public class RetrieveTest {
 
         //name like '王%' or (age < 40 and age >20 and email is not null)//queryWrapper.likeRight("name", "王%").
         //    or(wq -> wq.lt("age", 40).gt("age", 20).isNotNull("email"));
+
+        //(age<40 or email is not null ) and name like '王%'
+        //queryWrapper.nested(wq -> wq.lt("age", 40).or().isNotNull("email")).likeRight("name", "王%");
+
+        //age in(30,31,34,35)
+        //queryWrapper.in("age", Arrays.asList(30, 31, 34, 35));
+
+        //只返回满足条件的一条语句
+        queryWrapper.in("age", Arrays.asList(30, 31, 34, 35)).last("limit 1");
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
