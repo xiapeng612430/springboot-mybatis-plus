@@ -1,5 +1,6 @@
 package com.ims.mp;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
 import java.util.Arrays;
@@ -40,9 +41,17 @@ public class RetrieveTest {
     @Test
     public void selectByMap() {
         Map<String, Object> columnMap = new HashMap<>();
-        columnMap.put("name","ts");
-        columnMap.put("age",26);
+        columnMap.put("name", "ts");
+        columnMap.put("age", 26);
         List<User> list = userMapper.selectByMap(columnMap);
+        list.forEach(System.err::println);
+    }
+
+    @Test
+    public void selectByWrapper() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
+        queryWrapper.like("name", "雨").lt("age", 40);
+        List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
 }
