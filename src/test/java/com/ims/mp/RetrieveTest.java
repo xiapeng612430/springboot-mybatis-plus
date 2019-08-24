@@ -70,7 +70,9 @@ public class RetrieveTest {
         //只返回满足条件的一条语句
         //queryWrapper.in("age", Arrays.asList(30, 31, 34, 35)).last("limit 1");
 
-        queryWrapper.select("id", "name", "age").like("name", "雨").lt("age", 40);
+        //queryWrapper.select("id", "name", "age").like("name", "雨").lt("age", 40);
+        queryWrapper.select(User.class, info -> !info.getColumn().equals("create_time") && !info.getColumn().equals("manager_id"))
+            .like("name", "雨").lt("age", 40);
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
