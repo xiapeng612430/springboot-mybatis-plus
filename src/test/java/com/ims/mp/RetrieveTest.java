@@ -54,6 +54,12 @@ public class RetrieveTest {
         //queryWrapper.like("name", "雨").between("age", 20, 40).isNotNull("email");
         //queryWrapper.likeRight("name", "王").or().ge("age", 25).orderByDesc("age").orderByAsc("id");
         //queryWrapper.apply("date_format(create_time,'%Y-%m-%d') = {0}", "2019-02-14").inSql("manager_id", "select id from user where name like '王%'");
+
+        //name like '王%' and (age<40 or email is not null)
+        //queryWrapper.likeRight("name", "王").and(wq -> wq.lt("age", 40).or().isNotNull("email"));
+
+        //name like '王%' or (age < 40 and age >20 and email is not null)//queryWrapper.likeRight("name", "王%").
+        //    or(wq -> wq.lt("age", 40).gt("age", 20).isNotNull("email"));
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
