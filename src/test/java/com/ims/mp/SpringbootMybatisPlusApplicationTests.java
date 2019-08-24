@@ -1,4 +1,4 @@
-package com.ims.springbootMybatisPlus;
+package com.ims.mp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
