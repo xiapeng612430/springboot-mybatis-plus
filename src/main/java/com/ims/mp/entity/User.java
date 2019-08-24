@@ -1,5 +1,6 @@
 package com.ims.mp.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import lombok.Data;
  * on 2019-08-25 01:35
  */
 @Data
+@TableName("user")
 public class User {
     private Long id;
     private String name;
