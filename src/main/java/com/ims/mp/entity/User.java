@@ -22,4 +22,6 @@ public class User {
     private Long managerId;
     private LocalDateTime createTime;
 
+    @TableField(exist = false)
+    private String remark;
 }
