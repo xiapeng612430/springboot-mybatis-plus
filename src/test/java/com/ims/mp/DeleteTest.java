@@ -1,6 +1,7 @@
 package com.ims.mp;
 
 import com.ims.mp.mapper.UserMapper;
+import java.util.Arrays;
 import java.util.HashMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,12 @@ public class DeleteTest {
         HashMap<String, Object> params = new HashMap<>();
         params.put("name", "rookie");
         int rows = userMapper.deleteByMap(params);
+        System.out.println("rows: " + rows);
+    }
+
+    @Test
+    public void deleteByBatchIds() {
+        int rows = userMapper.deleteBatchIds(Arrays.asList(1165679383436926977L, 1165679653965389825L));
         System.out.println("rows: " + rows);
     }
 
