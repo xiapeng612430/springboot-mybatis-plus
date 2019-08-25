@@ -42,7 +42,7 @@ public class UpdateTest {
     }
 
     @Test
-    public void updateByWrapper() {
+    public void updateByWrapper2() {
         User whereUser = new User();
         whereUser.setName("李艺伟");
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>(whereUser);
@@ -51,6 +51,14 @@ public class UpdateTest {
         user.setAge(29);
         user.setEmail("lyw@cumtb.edu");
         int update = userMapper.update(user, updateWrapper);
+        System.out.println("update: " + update);
+    }
+
+    @Test
+    public void updateByWrapper3() {
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("name", "李艺伟").eq("age", 29).set("age", 30);
+        int update = userMapper.update(null, updateWrapper);
         System.out.println("update: " + update);
     }
 }
