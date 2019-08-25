@@ -3,6 +3,7 @@ package com.ims.mp.entity;
 import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDateTime;
 import lombok.Data;
 
@@ -12,7 +13,9 @@ import lombok.Data;
  */
 @Data
 @TableName("user")
-public class User {
+public class User extends Model<User> {
+
+    private static final long serialVersionUID = 1L;
     //@TableId(value = "id")
     private Long id;
     //@TableField("name")
