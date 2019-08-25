@@ -120,7 +120,18 @@ public class RetrieveTest {
     @Test
     public void selectByWrapperMaps() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id","name","age").like("name", "雨").lt("age", 40);
+        queryWrapper.select("id", "name", "age").like("name", "雨").lt("age", 40);
+        List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
+        maps.forEach(System.err::println);
+    }
+
+    @Test
+    //分组查询　
+    public void selectByWrapperMaps2() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        queryWrapper.select("avg(age) avg_age", "max(age) max_age", "min(age) min_age")
+            .groupBy("manager_id")
+            .having("sum(age) < {0}", 500);
         List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
         maps.forEach(System.err::println);
     }
