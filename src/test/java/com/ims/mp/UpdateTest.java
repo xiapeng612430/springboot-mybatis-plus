@@ -1,6 +1,8 @@
 package com.ims.mp;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
 import org.junit.Test;
@@ -60,5 +62,13 @@ public class UpdateTest {
         updateWrapper.eq("name", "李艺伟").eq("age", 29).set("age", 30);
         int update = userMapper.update(null, updateWrapper);
         System.out.println("update: " + update);
+    }
+
+    @Test
+    public void updateByWrapperLambda() {
+        LambdaUpdateWrapper<User> userLambdaUpdateWrapper = Wrappers.lambdaUpdate();
+        userLambdaUpdateWrapper.eq(User::getName, "李艺伟").eq(User::getAge, 30).set(User::getAge, 31);
+        int updateRows = userMapper.update(null, userLambdaUpdateWrapper);
+        System.out.println("update: " + updateRows);
     }
 }
