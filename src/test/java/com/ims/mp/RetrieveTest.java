@@ -2,8 +2,10 @@ package com.ims.mp;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
@@ -196,5 +198,23 @@ public class RetrieveTest {
             .and(lqw -> lqw.lt(User::getAge, 40).or().isNotNull(User::getEmail));
         List<User> list = userMapper.queryAll(lambdaQueryWrapper);
         list.forEach(System.out::println);
+    }
+
+    @Test
+    public void selectPage() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge("age", 20);
+        Page<User> userPage = new Page<>(1, 2);
+       /* IPage<User> userIPage = userMapper.selectPage(userPage, queryWrapper);
+        System.out.println("pages: " + userIPage.getPages());
+        System.out.println("total: " + userIPage.getTotal());
+        List<User> records = userIPage.getRecords();
+        records.forEach(System.out::println);*/
+
+        IPage<Map<String, Object>> mapIPage = userMapper.selectMapsPage(userPage, queryWrapper);
+        System.out.println("pages: " + mapIPage.getPages());
+        System.out.println("total: " + mapIPage.getTotal());
+        List<Map<String, Object>> records = mapIPage.getRecords();
+        records.forEach(System.out::println);
     }
 }
