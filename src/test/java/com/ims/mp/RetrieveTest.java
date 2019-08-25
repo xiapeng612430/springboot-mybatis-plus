@@ -188,4 +188,13 @@ public class RetrieveTest {
         List<User> list = userMapper.selectAll(lambdaQueryWrapper);
         list.forEach(System.out::println);
     }
+
+    @Test
+    public void selectByMySql() {
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.likeRight(User::getName, "王")
+            .and(lqw -> lqw.lt(User::getAge, 40).or().isNotNull(User::getEmail));
+        List<User> list = userMapper.queryAll(lambdaQueryWrapper);
+        list.forEach(System.out::println);
+    }
 }
