@@ -1,7 +1,9 @@
 package com.ims.mp;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
 import java.util.Arrays;
@@ -158,5 +160,15 @@ public class RetrieveTest {
         queryWrapper.like("name", "ts").lt("age", 40);
         User user = userMapper.selectOne(queryWrapper);
         System.out.println("user: " + user);
+    }
+
+    @Test
+    public void selectLambda() {
+        //LambdaQueryWrapper<User> lambdaQueryWrapper = new QueryWrapper<User>().lambda();
+        //LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<User> lambdaQueryWrapper = Wrappers.<User>lambdaQuery();
+        lambdaQueryWrapper.like(User::getName, "雨").lt(User::getAge, 40);
+        List<User> list = userMapper.selectList(lambdaQueryWrapper);
+        list.forEach(System.out::println);
     }
 }
