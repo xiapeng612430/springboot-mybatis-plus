@@ -151,4 +151,12 @@ public class RetrieveTest {
         Integer integer = userMapper.selectCount(queryWrapper);
         System.out.println("count: " + integer);
     }
+
+    @Test
+    public void selectByWrapperOne() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("name", "ts").lt("age", 40);
+        User user = userMapper.selectOne(queryWrapper);
+        System.out.println("user: " + user);
+    }
 }
