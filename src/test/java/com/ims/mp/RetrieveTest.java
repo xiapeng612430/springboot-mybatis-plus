@@ -143,4 +143,12 @@ public class RetrieveTest {
         List<Object> objects = userMapper.selectObjs(queryWrapper);
         objects.forEach(System.out::println);
     }
+
+    @Test
+    public void selectByWrapperCount() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("name", "雨").lt("age", 40);
+        Integer integer = userMapper.selectCount(queryWrapper);
+        System.out.println("count: " + integer);
+    }
 }
