@@ -217,4 +217,16 @@ public class RetrieveTest {
         List<Map<String, Object>> records = mapIPage.getRecords();
         records.forEach(System.out::println);
     }
+
+    @Test
+    public void selectMyPage() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge("age", 20);
+        Page<User> userPage = new Page<>(1, 2, true);
+        IPage<User> mapIPage = userMapper.selectUserPage(userPage, queryWrapper);
+        System.out.println("pages: " + mapIPage.getPages());
+        System.out.println("total: " + mapIPage.getTotal());
+        List<User> records = mapIPage.getRecords();
+        records.forEach(System.out::println);
+    }
 }

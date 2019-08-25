@@ -3,7 +3,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ims.mp.mapper.UserMapper">
-  <select id="queryAll" resultType="com.ims.mp.entity.User">
+  <select
+    id="queryAll"
+    resultType="com.ims.mp.entity.User">
+    select * from user ${ew.customSqlSegment}
+  </select>
+
+  <select
+    id="selectUserPage"
+    resultType="com.ims.mp.entity.User">
     select * from user ${ew.customSqlSegment}
   </select>
 </mapper>
