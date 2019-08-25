@@ -1,5 +1,7 @@
 package com.ims.mp;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,4 +42,11 @@ public class DeleteTest {
         System.out.println("rows: " + rows);
     }
 
+    @Test
+    public void deleteByWapper() {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(User::getAge, 27).or().gt(User::getAge, 41);
+        int delete = userMapper.delete(queryWrapper);
+        System.out.println("rows: " + delete);
+    }
 }
