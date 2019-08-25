@@ -1,6 +1,7 @@
 package com.ims.mp;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
 import java.util.Arrays;
@@ -76,4 +77,27 @@ public class RetrieveTest {
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
+
+    @Test
+    public void condition() {
+        String name = "";
+        String email = "y";
+        QueryWrapper queryWrapper = new QueryWrapper<User>();
+        queryWrapper.like(StringUtils.isNotEmpty(name), "name", name)
+            .like(StringUtils.isNotEmpty(email), "email", email);
+        List list = userMapper.selectList(queryWrapper);
+        list.forEach(System.err::println);
+    }
+
+    @Test
+    public void selectByWrapperEntity() {
+        User whereUser = new User();
+        whereUser.setName("大boss");
+        whereUser.setAge(40);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>(whereUser);
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.err::println);
+    }
+
+
 }
