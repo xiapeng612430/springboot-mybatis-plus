@@ -1,6 +1,7 @@
 package com.ims.mp;
 
 import com.ims.mp.mapper.UserMapper;
+import java.util.HashMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,13 @@ public class DeleteTest {
         int rows = userMapper.deleteById(1165326669666398210L);
         System.out.println("delete rows : " + rows);
     }
+
+    @Test
+    public void deleteByMap() {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("name", "rookie");
+        int rows = userMapper.deleteByMap(params);
+        System.out.println("rows: " + rows);
+    }
+
 }
