@@ -135,4 +135,12 @@ public class RetrieveTest {
         List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
         maps.forEach(System.err::println);
     }
+
+    @Test
+    public void selectByWrapperObjs() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id", "name").like("name", "雨").lt("age", 40);
+        List<Object> objects = userMapper.selectObjs(queryWrapper);
+        objects.forEach(System.out::println);
+    }
 }
