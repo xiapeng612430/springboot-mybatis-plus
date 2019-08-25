@@ -32,4 +32,14 @@ public class ConditionTest {
         List list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
     }
+
+    @Test
+    public void selectByWrapperEntity() {
+        User whereUser = new User();
+        whereUser.setName("大boss");
+        whereUser.setAge(40);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>(whereUser);
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.err::println);
+    }
 }

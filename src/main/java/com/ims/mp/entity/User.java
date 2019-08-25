@@ -1,5 +1,6 @@
 package com.ims.mp.entity;
 
+import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ public class User {
     //@TableId(value = "id")
     private Long id;
     //@TableField("name")
+    @TableField(condition = SqlCondition.LIKE)
     private String name;
     private Integer age;
     private String email;
