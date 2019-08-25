@@ -204,7 +204,7 @@ public class RetrieveTest {
     public void selectPage() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.ge("age", 20);
-        Page<User> userPage = new Page<>(1, 2);
+        Page<User> userPage = new Page<>(1, 2, false);
        /* IPage<User> userIPage = userMapper.selectPage(userPage, queryWrapper);
         System.out.println("pages: " + userIPage.getPages());
         System.out.println("total: " + userIPage.getTotal());
