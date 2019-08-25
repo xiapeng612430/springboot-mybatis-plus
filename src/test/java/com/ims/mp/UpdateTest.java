@@ -1,5 +1,6 @@
 package com.ims.mp;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.ims.mp.entity.User;
 import com.ims.mp.mapper.UserMapper;
 import org.junit.Test;
@@ -26,6 +27,17 @@ public class UpdateTest {
         user.setAge(26);
         user.setEmail("wtf@qq.com");
         int rows = userMapper.updateById(user);
-        System.out.println("update : " + i);
+        System.out.println("update : " + rows);
+    }
+
+    @Test
+    public void updateByWrapper() {
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("name", "李艺伟").eq("age", 28);
+        User user = new User();
+        user.setAge(29);
+        user.setEmail("lyw@cumtb.edu");
+        int update = userMapper.update(user, updateWrapper);
+        System.out.println("update: " + update);
     }
 }
