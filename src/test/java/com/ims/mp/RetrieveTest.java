@@ -100,4 +100,16 @@ public class RetrieveTest {
     }
 
 
+    @Test
+    public void selectByWrapperAllEq() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", "王天风");
+        params.put("age", 25);
+       // params.put("age", null);
+       // queryWrapper.allEq(params, false);
+        queryWrapper.allEq(params);
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.err::println);
+    }
 }
