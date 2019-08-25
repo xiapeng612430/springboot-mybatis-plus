@@ -106,8 +106,12 @@ public class RetrieveTest {
         Map<String, Object> params = new HashMap<>();
         params.put("name", "王天风");
         params.put("age", 25);
-       // params.put("age", null);
-       // queryWrapper.allEq(params, false);
+        // false表示 值为null的不计入条件
+        // params.put("age", null);
+        // queryWrapper.allEq(params, false);
+
+        // 第一个参数表示过滤条件
+        //queryWrapper.allEq((k, v) -> !k.equals("name"), params);
         queryWrapper.allEq(params);
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.err::println);
