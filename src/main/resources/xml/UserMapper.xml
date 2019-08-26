@@ -5,7 +5,7 @@
 <mapper namespace="com.ims.mp.mapper.UserMapper">
   <select
     id="queryAll"
-    resultType="com.ims.mp.entity.User">
+    resultType="User">
     select * from user ${ew.customSqlSegment}
   </select>
 
