@@ -30,7 +30,7 @@ public class SimpleTest {
     @Test
     public void insert() {
         User user = new User();
-        user.setName("jack love");
+        user.setName("ming");
         user.setAge(26);
         user.setEmail("1234@qq.com");
         user.setManagerId(1088248166370832385L);

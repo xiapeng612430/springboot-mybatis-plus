@@ -17,6 +17,22 @@ public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
     //@TableId(value = "id")
+    /*
+    自增策略
+    @TableId(type = IdType.AUTO)
+    */
+
+    /*
+    全局策略
+    @TableId(type = IdType.NONE)
+    */
+
+    /*
+    uuid
+    @TableId(type = IdType.UUID)
+    */
+
+
     private Long id;
     //@TableField("name")
     @TableField(condition = SqlCondition.LIKE)
