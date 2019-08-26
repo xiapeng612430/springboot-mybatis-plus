@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ims.mp.entity.User;
 import com.ims.mp.service.UserService;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,23 @@ public class ServiceTest {
         //boolean saveBatch = userService.saveBatch(Arrays.asList(user1, user2));
         boolean saveBatch = userService.saveOrUpdateBatch(Arrays.asList(user1, user2));
         System.out.println("saveBatch : " + saveBatch);
+    }
+
+    @Test
+    public void chain() {
+        List<User> m = userService.lambdaQuery().gt(User::getAge, 25).like(User::getName, "m").list();
+        m.forEach(System.out::println);
+    }
+
+    @Test
+    public void chainUpdate() {
+        boolean update = userService.lambdaUpdate().eq(User::getAge, 26).set(User::getAge, 26).update();
+        System.out.println(update);
+    }
+
+    @Test
+    public void chainUpdateRemove() {
+        boolean delete = userService.lambdaUpdate().eq(User::getAge, 22).remove();
+        System.out.println(delete);
     }
 }
